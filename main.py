@@ -15,9 +15,6 @@ from app.routers import games, users, items
 
 app = FastAPI()
 
-
-app.include_router(users.router)
-app.include_router(items.router)
 app.include_router(games.router)
 
 @app.get("/")
