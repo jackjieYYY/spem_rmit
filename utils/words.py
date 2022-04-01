@@ -5,6 +5,8 @@ from typing import List
 from unittest import result
 from winreg import REG_MULTI_SZ
 
+from models.user import charResult
+
 
 class Node:
 
@@ -218,14 +220,6 @@ class TernarySearchTreeDictionary():
                     parent.middle = None
                 return parent
 
-class charResult():
-    def __init__(self,letter:str,code : int):
-        # code = -2 means the letter is not in the word
-        # code = -1 The word is in this letter but not in the correct position
-        # code = 1 The word is in this letter and in the correct position
-        self.letter = letter
-        self.code = code
-
 wordsDict = TernarySearchTreeDictionary()
 wordsArray = []
 wordCount = 0
@@ -263,22 +257,27 @@ def isCorrect(input: str,word:str):
     if wordsDict.search(input) == None:
         # -4 is meaning the input is not a word
         return -4,None
+    
     result = []
     for i in range(5):
         # code = -2 means the letter is not in the word
         # code = -1 The word is in this letter but not in the correct position
         # code = 1 The word is in this letter and in the correct position
         if input[i] not in word:
-            temp = charResult(input[i],-2)
-            result.append(temp)
-            
+            temp = charResult(letter= input[i],code= -2)
+            result.append(temp.dict())
         else:
             if input[i] == word[i]:
-                temp = charResult(input[i],1)
-                result.append(temp)
+                temp = charResult(letter= input[i],code= 1)
+                result.append(temp.dict())
             else:
-                temp = charResult(input[i],-1)
-                result.append(temp)
+                temp = charResult(letter= input[i],code= -1)
+                result.append(temp.dict())
+    if input == word:
+        return 2,result
+    else:
+        return 3,result
+
 
 def dictTest():
     global wordCount

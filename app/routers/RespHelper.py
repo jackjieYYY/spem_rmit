@@ -1,5 +1,10 @@
 
-
+def resp_ok_code(code,data):
+    return {
+        "code": code,
+        "msg": "success",
+        "data": data
+    }
 
 def resp_ok(data):
     return {

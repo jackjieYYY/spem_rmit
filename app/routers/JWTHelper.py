@@ -2,17 +2,12 @@ from typing import Optional
 import jwt
 from pydantic import BaseModel
 
+from models.user import User
+
 secret_key = "RMIT_SEPM!@#$%^&*()_+"
 
-class PayloadData(BaseModel):
-    UserId : str
-    Username: Optional[str] = None
-    LastGameUTCTime: int
-    WordleArray: list
 
-
-
-def encoded_jwt(payload : PayloadData):
+def encoded_jwt(payload : User):
     return jwt.encode(payload, secret_key, algorithm='HS256')
 
 def decode_jwt(token):
