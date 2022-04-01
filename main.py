@@ -11,7 +11,7 @@ import uvicorn
 import utils.words as words
 from fastapi import Depends, FastAPI
 
-from app.routers import games, users, items
+from app.routers import games
 
 app = FastAPI()
 
