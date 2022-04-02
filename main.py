@@ -11,12 +11,12 @@ import uvicorn
 import utils.words as words
 from fastapi import Depends, FastAPI
 
-from app.routers import games
+from app.routers import games, user
 
 app = FastAPI()
 
 app.include_router(games.router)
-
+app.include_router(user.router)
 @app.get("/")
 async def root():
     return {"message": "Hello Bigger Applications!"}
